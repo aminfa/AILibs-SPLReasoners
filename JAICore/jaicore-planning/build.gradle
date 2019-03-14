@@ -7,12 +7,24 @@ dependencies {
 	compile project(":JAICore:jaicore-graph")
 	
 	//pddl4j
-	compile ('com.github.pellierd:pddl4j:v3.5.0') {
-    exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
-    exclude group: 'org.apache.logging.log4j', module: 'log4j-api'
-  }
-	runtime ('com.github.pellierd:pddl4j:v3.5.0')  {
-    exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
-    exclude group: 'org.apache.logging.log4j', module: 'log4j-api'
-  }
+	compile ('com.github.pellierd:pddl4j:v3.8.2') {
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
+    }
+	runtime ('com.github.pellierd:pddl4j:v3.8.2')  {
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
+    }
+
+    // https://mvnrepository.com/artifact/com.github.pellierd/pddl4j
+//    compile (group: 'com.github.pellierd', name: 'pddl4j', version: '3.8.2', ext: 'pom')
+//     {
+//        exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+//        exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
+//    }
+//    runtime (group: 'com.github.pellierd', name: 'pddl4j', version: '3.8.2', ext: 'pom')
+//    {
+//        exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+//        exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
+//    }
 }

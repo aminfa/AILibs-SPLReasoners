@@ -1,0 +1,4 @@
+[submodule "softwareconfiguration/splreasoner"]
+	path = softwareconfiguration/splreasoner
+	url = amin@home.pome.online:repos/SPLSolvers.git
+	branch = master

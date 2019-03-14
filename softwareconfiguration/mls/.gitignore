@@ -1,0 +1,8 @@
+/out/
+/.settings/
+/bin/
+/build/
+/service-files/
+.project
+.classpath
+!/lib/*jar

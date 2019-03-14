@@ -247,3 +247,19 @@ gradle-app.setting
 # Generated files by running skikitwrapper
 JAICore/jaicore-ml/tmp/
 JAICore/jaicore-ml/model_dumps/
+
+
+## own ignores
+
+!.gitignore
+.classpath
+/testout/
+**/instances/
+**/out/
+SEDE.iml
+/deploy/**/*.pom
+/deploy/SEDE/
+/deploy/SEDE_Python/
+**/testrsc
+**/servicespec/
+/*.temp/

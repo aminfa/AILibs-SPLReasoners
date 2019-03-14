@@ -1,6 +1,6 @@
 package jaicore.planning.classical.pddl;
 
-import fr.uga.pddl4j.planners.hsp.Node;
+import fr.uga.pddl4j.planners.statespace.search.strategy.Node;
 import jaicore.search.model.travesaltree.AbstractNode;
 
 public class PDDLNode extends AbstractNode{
