@@ -26,5 +26,8 @@ project(":hasco").projectDir = new File(configPrefix,"hasco")
 include 'mlplan'
 project(":mlplan").projectDir = new File(configPrefix,"mlplan")
 
-include 'splreasoner'
-project(":splreasoner").projectDir = new File(configPrefix, "splreasoner")
+// Conditionally include the spl reasoner sub project.
+if(new File(configPrefix, "splreasoner/build.gradle").exists()) {
+    include 'splreasoner'
+    project(":splreasoner").projectDir = new File(configPrefix, "splreasoner")
+}
