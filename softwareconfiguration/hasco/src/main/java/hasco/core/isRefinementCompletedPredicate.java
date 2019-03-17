@@ -53,57 +53,57 @@ public class isRefinementCompletedPredicate implements EvaluablePredicate {
 	public boolean test(Monom state, ConstantParam... params) {
 		
 		/* initialize routine */
-		if (params.length != 2) {
-			throw new IllegalArgumentException("There should be exactly two parameters additional to the state but " + params.length +" were provided: " + Arrays.toString(params) + ". This parameters refer to the component name that is being configured and the object itself.");
-		}
-		if (params[0] == null)
-			throw new IllegalArgumentException("The component name must not be null.");
-		if (params[1] == null)
-			throw new IllegalArgumentException("The component instance reference must not be null.");
-//		final String componentName = params[0].getName();
-		final String objectContainer = params[1].getName();
-				
-		/* determine current values for the params */
-		ComponentInstance groundComponent = Util.getGroundComponentsFromState(state, components, false).get(objectContainer);
-		Component component = groundComponent.getComponent();
-		Map<String,String> componentParamContainers = Util.getParameterContainerMap(state, objectContainer);
-		for (Parameter param : component.getParameters()) {
-			String containerOfParam = componentParamContainers.get(param.getName());
-			String currentValueOfParam = groundComponent.getParameterValue(param);
-			boolean variableHasBeenSet = state.contains(new Literal("overwritten('" + containerOfParam + "')"));
-			boolean variableHasBeenClosed = state.contains(new Literal("closed('" + containerOfParam + "')"));
-			assert variableHasBeenSet == groundComponent.getParametersThatHaveBeenSetExplicitly().contains(param);
-			assert !variableHasBeenClosed || variableHasBeenSet : "Parameter " + param.getName() + " of component " + component.getName() + " with default domain " + param.getDefaultDomain() + " has been closed but no value has been set.";
-			
-			if (param.isNumeric()) {
-				double min = 0;
-				double max = 0;
-				if (currentValueOfParam != null) { 
-					List<String> interval = SetUtil.unserializeList(currentValueOfParam);
-					min = Double.parseDouble(interval.get(0));
-					max = Double.parseDouble(interval.get(1));
-				}
-				else {
-					min = ((NumericParameterDomain)param.getDefaultDomain()).getMin();
-					max = ((NumericParameterDomain)param.getDefaultDomain()).getMax();
-				}
-				double length = max - min;
-				if (length > refinementConfiguration.get(component).get(param).getIntervalLength()) {
-					logger.info("Test for isRefinementCompletedPredicate({},{}) is negative. Interval length of [{},{}] is {}. Required length to consider an interval atomic is {}", params[0].getName(), objectContainer, min ,max, length, refinementConfiguration.get(component).get(param).getIntervalLength());
-					return false;
-				}
-			}
-			else if (param.getDefaultDomain() instanceof CategoricalParameterDomain) { // categorical params can be refined iff the have not been set and closed before
-				assert param.getDefaultValue() != null : "Param " + param.getName() + " has no default value!";
-				if (!variableHasBeenSet && !variableHasBeenClosed) {
-					logger.info("Test for isRefinementCompletedPredicate({},{}) is negative", params[0].getName(), objectContainer);
-					return false;
-				}
-			}
-			else
-				throw new UnsupportedOperationException("Currently no support for testing parameters of type " + param.getClass().getName());
-		}
-		logger.info("Test for isRefinementCompletedPredicate({},{}) is positive", params[0].getName(), objectContainer);
+//		if (params.length != 2) {
+//			throw new IllegalArgumentException("There should be exactly two parameters additional to the state but " + params.length +" were provided: " + Arrays.toString(params) + ". This parameters refer to the component name that is being configured and the object itself.");
+//		}
+//		if (params[0] == null)
+//			throw new IllegalArgumentException("The component name must not be null.");
+//		if (params[1] == null)
+//			throw new IllegalArgumentException("The component instance reference must not be null.");
+////		final String componentName = params[0].getName();
+//		final String objectContainer = params[1].getName();
+//
+//		/* determine current values for the params */
+//		ComponentInstance groundComponent = Util.getGroundComponentsFromState(state, components, false).get(objectContainer);
+//		Component component = groundComponent.getComponent();
+//		Map<String,String> componentParamContainers = Util.getParameterContainerMap(state, objectContainer);
+//		for (Parameter param : component.getParameters()) {
+//			String containerOfParam = componentParamContainers.get(param.getName());
+//			String currentValueOfParam = groundComponent.getParameterValue(param);
+//			boolean variableHasBeenSet = state.contains(new Literal("overwritten('" + containerOfParam + "')"));
+//			boolean variableHasBeenClosed = state.contains(new Literal("closed('" + containerOfParam + "')"));
+//			assert variableHasBeenSet == groundComponent.getParametersThatHaveBeenSetExplicitly().contains(param);
+//			assert !variableHasBeenClosed || variableHasBeenSet : "Parameter " + param.getName() + " of component " + component.getName() + " with default domain " + param.getDefaultDomain() + " has been closed but no value has been set.";
+//
+//			if (param.isNumeric()) {
+//				double min = 0;
+//				double max = 0;
+//				if (currentValueOfParam != null) {
+//					List<String> interval = SetUtil.unserializeList(currentValueOfParam);
+//					min = Double.parseDouble(interval.get(0));
+//					max = Double.parseDouble(interval.get(1));
+//				}
+//				else {
+//					min = ((NumericParameterDomain)param.getDefaultDomain()).getMin();
+//					max = ((NumericParameterDomain)param.getDefaultDomain()).getMax();
+//				}
+//				double length = max - min;
+//				if (length > refinementConfiguration.get(component).get(param).getIntervalLength()) {
+//					logger.trace("Test for isRefinementCompletedPredicate({},{}) is negative. Interval length of [{},{}] is {}. Required length to consider an interval atomic is {}", params[0].getName(), objectContainer, min ,max, length, refinementConfiguration.get(component).get(param).getIntervalLength());
+//					return false;
+//				}
+//			}
+//			else if (param.getDefaultDomain() instanceof CategoricalParameterDomain) { // categorical params can be refined iff the have not been set and closed before
+//				assert param.getDefaultValue() != null : "Param " + param.getName() + " has no default value!";
+//				if (!variableHasBeenSet && !variableHasBeenClosed) {
+//					logger.trace("Test for isRefinementCompletedPredicate({},{}) is negative", params[0].getName(), objectContainer);
+//					return false;
+//				}
+//			}
+//			else
+//				throw new UnsupportedOperationException("Currently no support for testing parameters of type " + param.getClass().getName());
+//		}
+//		logger.trace("Test for isRefinementCompletedPredicate({},{}) is positive", params[0].getName(), objectContainer);
 		return true;
 	}
 }

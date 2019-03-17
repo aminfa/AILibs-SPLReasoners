@@ -256,7 +256,28 @@ public class HASCOReduction<V extends Comparable<V>> implements
 
 	public CEOCIPSTNPlanningProblem getPlanningProblem(final CEOCIPSTNPlanningDomain domain, final CNFFormula knowledge, final Monom init) {
 		Map<String, EvaluablePredicate> evaluablePredicates = new HashMap<>();
-		evaluablePredicates.put("isValidParameterRangeRefinement", new isValidParameterRangeRefinementPredicate(this.components, this.paramRefinementConfig));
+//        evaluablePredicates.put("isValidParameterRangeRefinement", new isValidParameterRangeRefinementPredicate(this.components, this.paramRefinementConfig));
+        evaluablePredicates.put("isValidParameterRangeRefinement", new EvaluablePredicate() {
+            @Override
+            public Collection<List<ConstantParam>> getParamsForPositiveEvaluation(Monom state, ConstantParam... partialGrounding) {
+                throw new UnsupportedOperationException();
+            }
+
+            @Override
+            public boolean isOracable() {
+                return false;
+            }
+
+            @Override
+            public Collection<List<ConstantParam>> getParamsForNegativeEvaluation(Monom state, ConstantParam... partialGrounding) {
+                throw new UnsupportedOperationException();
+            }
+
+            @Override
+            public boolean test(Monom state, ConstantParam... params) {
+                return true;
+            }
+        });
 		evaluablePredicates.put("notRefinable", new isNotRefinable(this.components, this.paramRefinementConfig));
 		evaluablePredicates.put("refinementCompleted", new isRefinementCompletedPredicate(this.components, this.paramRefinementConfig));
 		return new CEOCIPSTNPlanningProblem(domain, knowledge, init, new TaskNetwork(RESOLVE_COMPONENT_IFACE_PREFIX + this.originalProblem.getRequiredInterface() + "('request', 'solution')"), evaluablePredicates, new HashMap<>());
@@ -269,7 +290,7 @@ public class HASCOReduction<V extends Comparable<V>> implements
 	/**
 	 * This method is a utility for everybody who wants to work on the graph obtained from HASCO's reduction but without using the search logic of HASCO
 	 *
-	 * @param plannerFactory
+	 * @param
 	 * @return
 	 */
 	public <T, A, ISearch extends GraphSearchInput<T, A>> GraphGenerator<T, A> getGraphGeneratorUsedByHASCOForSpecificPlanner(
