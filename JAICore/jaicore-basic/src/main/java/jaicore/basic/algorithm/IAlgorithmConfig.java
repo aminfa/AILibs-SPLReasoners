@@ -12,7 +12,7 @@ public interface IAlgorithmConfig extends Mutable {
 	 * @return Number of CPU cores available for parallelization.
 	 */
 	@Key(K_CPUS)
-	@DefaultValue("8")
+	@DefaultValue("1")
 	public int cpus();
 
 	/**
