@@ -1,7 +1,6 @@
 dependencies {
 	compile project(":JAICore:jaicore-search")
 	compile project(":JAICore:jaicore-basic")
-	testCompile project(path: ':JAICore:jaicore-basic', configuration: 'testArtifacts')
 	compile project(":JAICore:jaicore-logic")
 	compile project(":JAICore:jaicore-graphvisualizer")
 	compile project(":JAICore:jaicore-graph")
@@ -27,4 +26,5 @@ dependencies {
 //        exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
 //        exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
 //    }
+	testCompile project(path: ':JAICore:jaicore-basic', configuration: 'testArtifacts')
 }
