@@ -11,6 +11,7 @@ include ":JAICore:jaicore-logic"
 include ":JAICore:jaicore-math"
 include ":JAICore:jaicore-ml"
 
+include ":JAICore:jaicore-graph"
 include ":JAICore:jaicore-planning"
 include ":JAICore:jaicore-processes"
 include ":JAICore:jaicore-search"

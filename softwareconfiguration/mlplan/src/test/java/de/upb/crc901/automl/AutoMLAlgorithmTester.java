@@ -15,7 +15,7 @@ import weka.core.Instances;
 public abstract class AutoMLAlgorithmTester extends GeneralAlgorithmTester{
 
 	// creates the test data
-	@Parameters(name = "{0}")
+	@Parameters()
 	public static Collection<Object[]> data() {
 		List<Object> problemSets = new ArrayList<>();
 		problemSets.add(new OpenMLProblemSet());

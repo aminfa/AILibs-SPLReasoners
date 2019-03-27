@@ -90,6 +90,8 @@ allprojects {
         compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.1'
         compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
 
+        compile 'it.unimi.dsi:fastutil:8.2.2'
+
 		//Testing
 		testCompile group: 'junit', name: 'junit', version: '4.12'
 		//testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.4.0-M1'
@@ -185,6 +187,7 @@ dependencies{
 	compile project(":JAICore:jaicore-planning")
 	compile project(":JAICore:jaicore-processes")
 	compile project(":JAICore:jaicore-search")
+    compile project(":JAICore:jaicore-planning")
 
 }
 

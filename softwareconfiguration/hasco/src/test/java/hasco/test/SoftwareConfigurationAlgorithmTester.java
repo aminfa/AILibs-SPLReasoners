@@ -14,7 +14,7 @@ import jaicore.basic.algorithm.IAlgorithm;
 public abstract class SoftwareConfigurationAlgorithmTester extends GeneralAlgorithmTester {
 
 	// creates the test data
-	@Parameters(name = "{0}")
+	@Parameters()
 	public static Collection<Object[]> data() {
 		List<Object> problemSets = new ArrayList<>();
 		problemSets.add(new SoftwareConfigurationProblemSet());

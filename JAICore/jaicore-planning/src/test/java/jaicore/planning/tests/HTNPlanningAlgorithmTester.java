@@ -15,7 +15,7 @@ import jaicore.planning.hierarchical.testproblems.nesteddichotomies.CEOCSTNNeste
 public abstract class HTNPlanningAlgorithmTester extends GeneralAlgorithmTester {
 
 	// creates the test data
-	@Parameters(name = "{0}")
+	@Parameters()
 	public static Collection<Object[]> data() {
 		List<Object> problemSets = new ArrayList<>();
 		problemSets.add(new STNDockworkerProblemSet());
