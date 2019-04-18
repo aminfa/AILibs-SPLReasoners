@@ -1,4 +1,3 @@
-[submodule "softwareconfiguration/splreasoner"]
-	path = softwareconfiguration/splreasoner
-	url = git@github.com:aminfa/SPLSolvers.git
-	branch = master
+[submodule "softwareconfiguration/splsolvers"]
+	path = softwareconfiguration/splsolvers
+	url = https://aminfa@github.com/aminfa/SPLSolvers.git
